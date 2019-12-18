@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <div class="registration">
+            <form action="/register" method="post">
+            {% csrf_token %}
+                <h1>Register</h1>
+                {% if messages %}
+                <ul class="messages">    
+                    {% for message in messages %}    
+                        <li>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <h3>Name <input type="text" name="name" id=""></h3>
+                <h3>Username <input type="text" name="username" id=""></h3>
+                <h3>Password <input type="password" name="password" id=""></h3>
+                <h3>Confirm PW <input type="password" name="confirmpw" id=""></h3>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div class="login">
+            <form action="/login" method="post">
+                    {% csrf_token %}
+                <h1>Login</h1>
+                <h3>Username <input type="text" name="username" id=""></h3>
+                <h3>Password <input type="password" name="password" id=""></h3>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

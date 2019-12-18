@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Plan</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'addplan.css' %}">
+</head>
+<body>
+    <h1>Add a Trip</h1>
+    <a href="/travels">Home</a> | <a href="/logout">Logout</a>
+    <form action="/addplan" method="post">
+        {% csrf_token %}
+            {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li>{{ message }}</li>    
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <p>Destination :<input type="text" name="destination" id=""></p>
+            <p>Description : <textarea name="plan" id="" cols="30" rows="10"></textarea></p>
+            <p>Travel Date From :<input type="date" name="datefrom" id=""></p>
+            <p>Travel Date To :<input type="date" name="dateto" id=""></p>
+            <button type="submit">Add</button>
+        </form>
+
+</body>
+</html>

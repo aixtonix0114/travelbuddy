@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'travels.css' %}">
+
+</head>
+<body>
+    <h1>Hello, {{loggedIninfo.name}}!</h1>
+    <a href="/logout">Log Out</a>
+    <p>Your Trip Schedules</p>
+    <table>
+        <tr>
+          <th>Destination</th>
+          <th>Travel Start Date</th>
+          <th>Travel End Date</th>
+          <th>Plan</th>
+        </tr>
+        {% for planbyMe in allplansbyMe %}
+        <tr>
+          <td><a href="/travels/destination/{{planbyMe.id}}">{{planbyMe.destination}}</a></td>
+          <td>{{planbyMe.startdate}}</td>
+          <td>{{planbyMe.enddate}}</td>
+          <td>{{planbyMe.plan}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <p>Other User's Travel Plans</p>
+      <table>
+          <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Do You Want to Join</th>
+          </tr>
+          {% for other in othersplans %}
+          <tr>
+            <td>{{other.creator.name}}</td>
+            <td><a href="/travels/destination/{{other.id}}">{{other.destination}}</a></td>
+            <td>{{other.startdate}}</td>
+			<td>{{other.enddate}}</td>
+			<td><a href="/travels/{{other.id}}">Join</a></td>
+          </tr>
+          {% endfor %}
+		</table>
+		<a href="/add">Add Travel Plan</a>
+</body>
+</html>
